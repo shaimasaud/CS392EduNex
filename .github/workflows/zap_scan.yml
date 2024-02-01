@@ -1,0 +1,18 @@
+name: OWASP ZAP Scan
+
+on: [push, pull_request]
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Run ZAP Security Scan
+        uses: zaproxy/action-full-scan@v2
+        with:
+          target: "https://www.edunexs.com/"
+          alertthreshold: "high"
+          policy: "Default Policy"
